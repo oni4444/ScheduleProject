@@ -22,6 +22,11 @@ public class ScheduleRepository {
 
 
     // 기능
+
+    /**
+     * 생성
+     * @param schedule
+     */
     public void save(Schedule schedule) {
 
         // 1. 엔티티매니저 준비
@@ -39,7 +44,6 @@ public class ScheduleRepository {
 
         // 5. entityManager 정리
         entityManager.close();
-
 
     }
 
@@ -64,12 +68,12 @@ public class ScheduleRepository {
     /**
      * 단건 조회
      */
-    public Schedule findById(Long id) {
+    public Schedule findById(Long ScheduleId) {
         // 1. 엔티티 매니저 준비
         EntityManager entityManager = emf.createEntityManager();
 
         // 2. 조회 - JPQL
-        Schedule schedule = entityManager.find(Schedule.class, id);
+        Schedule schedule = entityManager.find(Schedule.class, ScheduleId);
 
         // 3. 엔티티 매니저 정리
         entityManager.close();

@@ -5,6 +5,8 @@ import project.schedule.dto.ScheduleRequestDto;
 import project.schedule.entity.Schedule;
 import project.schedule.repository.ScheduleRepository;
 
+import java.util.List;
+
 @Service
 public class ScheduleService {
 
@@ -19,27 +21,48 @@ public class ScheduleService {
 
 
     // 기능
+
+    /**
+     * 생성
+     * @param dto
+     * @return
+     */
     public Schedule createSchedule(ScheduleRequestDto dto) {
         Schedule schedule = new Schedule(dto);
-        Schedule saved = scheduleRepository.save(schedule);
-        return saved;
+        scheduleRepository.save(schedule);
+        return schedule;
     }
 
-    public void getAllSchedules() {
-        scheduleRepository.findAll();
+    /**
+     * 리스트 조회
+     * @return
+     */
+    public List<Schedule> getAllSchedules() {
+            List<Schedule> find = scheduleRepository.findAll();
+            return find;
     }
 
-    public void getScheduleById() {
-        scheduleRepository.findById();
+    /**
+     * 단건 조회
+     * @param ScheduleId
+     * @return
+     */
+    public Schedule getScheduleById(Long ScheduleId) {
+        return scheduleRepository.findById(ScheduleId);
     }
 
-
-    public void updateSchedule() {
-        scheduleRepository.update();
+    /**
+     * 수정
+     */
+    public void updateSchedule(Long scheduleId, String newScheduleTitle) {
+        scheduleRepository.update(scheduleId, newScheduleTitle);
     }
 
-    public void deleteSchedule() {
-        scheduleRepository.delete();
+    /**
+     * 삭제
+     */
+    public void deleteSchedule(Long scheduleId) {
+        scheduleRepository.delete(scheduleId);
     }
 
 }
